@@ -6,7 +6,7 @@ exports.post_create_get = (req, res) => {
 };
 
 // Handle Post create on POST
-exports.post_create_get = (req, res) => {
+exports.post_create_post = (req, res) => {
     res.send("NOT IMPLEMENTED: Post create POST");
 };
 
