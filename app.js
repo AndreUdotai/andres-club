@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose");
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -16,7 +16,8 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // Set up mongoose connection
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
+mongoose.set('strictQuery', false);
 const mongoDB = process.env.MY_MONGODB_URI
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
