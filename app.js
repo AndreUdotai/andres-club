@@ -3,6 +3,7 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
