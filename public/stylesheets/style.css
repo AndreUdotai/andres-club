@@ -1,8 +1,195 @@
-body {
+/* body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+} */
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
 }
+
+/* ****************************************** */
+/* HOME PAGE */
+/* ****************************************** */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  /* color: rgb(53, 53, 53); */
+  color: rgb(15, 20, 25);
+  /* color: red; */
+}
+
+body {
+  font-family: sans-serif;
+}
+
+#homePage {
+  border-bottom: 10px solid silver;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 20px;
+  border-bottom: solid 1px silver;
+  align-items: center;
+}
+
+li:hover {
+  cursor: pointer;
+}
+
+#header ul {
+  display: flex;
+}
+
+#header ul li {
+  list-style: none;
+  margin-left: 10px;
+}
+
+#links {
+  font-size: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#header li:first-of-type {
+  border-right: 1px solid silver;
+  padding-right: 10px;
+}
+
+#newPost {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  box-shadow: 0px 3px 5px #c1c0c0;
+}
+
+textarea {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  resize: none;
+  padding: 5px;
+  border: 1px solid silver;
+  border-radius: 4px;
+
+}
+
+button {
+  width: 100px;
+  border: none;
+  margin-top: 5px;
+  padding: 4px 4px;
+  /* background-color: rgb(6, 129, 206); */
+  background-color: rgb(41, 157, 237);
+  color: whitesmoke;
+  border-radius: 2px;
+  box-shadow: 2px 3px 3px #c1c0c0;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#postButton:hover {
+  color: white;
+  cursor: pointer;
+  box-shadow: 1px 2px 2px #c1c0c0;
+}
+
+#postButton:active {
+  color: white;
+  background-color: rgb(5, 111, 178);
+  box-shadow: none;
+  cursor: pointer;
+}
+
+#main {
+  max-width: 500px;
+  margin: 0 auto;
+  /* padding: 0 20px; */
+  border-left: solid 0.5px silver;
+  border-right: solid 0.5px silver;
+  padding-top: 10px;
+}
+
+#posts {
+  margin-top: 5px;
+  border-bottom: 0.5px silver solid;
+  /* border-top: 0.5px silver solid; */
+  padding: 10px 20px;
+  background-color: rgb(252, 252, 252);
+}
+
+#postHeader {
+  display: flex;
+}
+
+#postHeader li span {
+  position: relative;
+  left: -10px;
+}
+
+#usernameDisplay {
+  margin-right: 5px;
+  /* border-right: 7px red dotted; */
+}
+
+#post {
+  margin-top: 5px;
+}
+
+/* ****************************************** */
+/* SIGN UP PAGE */
+/* ****************************************** */
+
+#pageTitle {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#signUpForm {
+  border-bottom: 10px solid silver;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 50px auto;
+  border: 1px silver solid;
+  border-radius: 3px;
+  padding: 10px 20px;
+}
+
+input {
+  padding: 5px;
+  border: 1px silver solid;
+  border-radius: 2px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/* ****************************************** */
+/* LOGIN PAGE */
+/* ****************************************** */
+
+#loginForm {
+  border-bottom: 10px solid silver;
+}
+
+/* ****************************************** */
+/* MEMBERSHIP CODE PAGE */
+/* ****************************************** */
+
+#membershipCodeForm {
+  border-bottom: 10px solid silver;
+}
+
+
+
+
+
+
