@@ -95,7 +95,7 @@ exports.user_create_post = [
 
 // Handle User membership code on GET.
 exports.user_membership_update_get = (req, res) => {
-    res.send("NOT IMPLEMENTED: Membership create GET")
+    res.render("membership_form")
 }
 
 // Handle User membership code on POST.
