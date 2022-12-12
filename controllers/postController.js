@@ -12,7 +12,7 @@ exports.post_create_post = (req, res) => {
 
 // Display list of all POST.
 exports.post_list = (req, res) => {
-    res.send("NOT IMPLEMENTED: Post list");
+    res.render("post_list");
 };
 
 // Display Post delete form on GET.
