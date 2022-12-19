@@ -115,7 +115,7 @@ exports.user_admin_update_post = (req, res) => {
 
 // Handle User login on GET
 exports.user_login_get = (req, res) => {
-    res.send("NOT IMPLEMENTED: User login GET")
+    res.render("login_form")
 }
 
 // Handle User login on POST
