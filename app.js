@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const mongoose = require("mongoose");
-const dotenv = requre("dotenv");
+const dotenv = require("dotenv");
 require('dotenv').config();
 
 const passport = require('passport');

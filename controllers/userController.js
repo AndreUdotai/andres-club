@@ -1,12 +1,14 @@
+const passport = require("passport");
 const { body, validationResult } = require("express-validator");
 const { ResultWithContext } = require("express-validator/src/chain");
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
 
+
 // Display User create form on GET.
 exports.user_create_get = (req, res) => {
-    res.render("user_form", {error: "No Error"});
+    res.render("user_form", {error: "No error"});
 };
 
 // Handle User create on POST.
@@ -115,7 +117,7 @@ exports.user_admin_update_post = (req, res) => {
 
 // Handle User login on GET
 exports.user_login_get = (req, res) => {
-    res.send("NOT IMPLEMENTED: User login GET")
+    res.render("user_login");
 }
 
 // Handle User login on POST
