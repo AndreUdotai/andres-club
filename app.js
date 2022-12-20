@@ -1,20 +1,24 @@
-const bcrypt = require('bcryptjs');
-const session = require('express-session');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const mongoose = require("mongoose");
+const express = require('express');
+const app = express();
+
 var createError = require('http-errors');
-var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+const mongoose = require("mongoose");
+const dotenv = requre("dotenv");
 require('dotenv').config();
+
+const passport = require('passport');
+const { loginCheck } = require("./auth/passport");
+loginCheck(passport);
+
+const session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
-
-var app = express();
 
 // Set up mongoose connection
 // const mongoose = require("mongoose");
@@ -37,8 +41,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Body parsing
 app.use(express.urlencoded({ extended: false }));
 
+// Routes
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/post', postsRouter);
