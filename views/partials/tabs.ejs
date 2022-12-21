@@ -2,12 +2,21 @@
     <h1 id="title">Andre's Club</h1>
     <div id="links">
         <ul>
-            <li id="signUp">
-                <a href="/user/create">Sign up</a>
-            </li>
-            <li id="login">
-                <a href="/user/login">Login</a>
-            </li>
+            <% if (user) {%>
+                <li>
+                    Welcome <%= user.firstName %> <%= user.lastName %>
+                </li>
+                <li>
+                    <a href="/user/logout">Sign out</a>
+                </li>
+            <% } else { %>
+                <li id="signUp">
+                    <a href="/user/create">Sign up</a>
+                </li>
+                <li id="login">
+                    <a href="/user/login">Login</a>
+                </li>
+            <% } %>
         </ul>
         <ul>
             <li id="becomeMember">

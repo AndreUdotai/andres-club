@@ -8,7 +8,7 @@ const bcrypt = require("bcryptjs");
 
 // Display User create form on GET.
 exports.user_create_get = (req, res) => {
-    res.render("user_form", {error: "No error"});
+    res.render("user_form", {user: req.user, error: "No error"});
 };
 
 // Handle User create on POST.
@@ -117,7 +117,7 @@ exports.user_admin_update_post = (req, res) => {
 
 // Handle User login on GET
 exports.user_login_get = (req, res) => {
-    res.render("user_login");
+    res.render("user_login", {user: req.user});
 }
 
 // Handle User login on POST
@@ -138,25 +138,13 @@ exports.user_login_post = (req, res) => {
     }
 }
 
-// const loginUser = (req, res) => {
-//     const { email, password } = req.body;
-//     //Required
-//     if (!email || !password) {
-//         console.log('Please fill in all the fields');
-//         res.render('login', {
-//             email,
-//             password,
-//         });
-//     } else {
-//         passport.authenticate('local', {
-//             successRedirect: '/dashboard',
-//             failureRedirect: '/login',
-//             failureFlash: true,
-//         })(req, res);
-//     }
-// };
-
 // Handle User logout on GET
-exports.user_logout = (req, res) => {
-    res.send("NOT IMPLEMENTED: User logout GET");
-}
+exports.user_logout = (req, res, next) => {
+    req.logout(function (err) {
+        if (err) {
+            console.log("I got here!!!!!!")
+            return next(err);
+        }
+        res.redirect('/');
+    });
+};

@@ -17,7 +17,7 @@ router.get("/login", user_controller.user_login_get);
 router.post("/login", user_controller.user_login_post);
 
 // GET request for logout
-router.post("/logout", user_controller.user_logout);
+router.get("/logout", user_controller.user_logout);
 
 // GET request for updating user membership status
 router.get("/:id/membership/update", user_controller.user_membership_update_get);
