@@ -12,7 +12,7 @@ exports.post_create_post = (req, res) => {
 
 // Display list of all POST.
 exports.post_list = (req, res) => {
-    res.render("post_list");
+    res.render("post_list", { user: req.user });
 };
 
 // Display Post delete form on GET.

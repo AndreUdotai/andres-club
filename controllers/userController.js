@@ -122,8 +122,39 @@ exports.user_login_get = (req, res) => {
 
 // Handle User login on POST
 exports.user_login_post = (req, res) => {
-    res.send("NOT IMPLEMENTED: User login POST");
+    const { username, password } = req.body;
+    if ( !username || !password) {
+        console.log("Please fill in all the fields");
+        res.render("login_form", {
+            username,
+            password,
+        });
+    } else {
+        passport.authenticate('local', {
+            successRedirect: "/",
+            failureRedirect: "/user/login",
+            // failureFlash: true,
+        }) (req, res);
+    }
 }
+
+// const loginUser = (req, res) => {
+//     const { email, password } = req.body;
+//     //Required
+//     if (!email || !password) {
+//         console.log('Please fill in all the fields');
+//         res.render('login', {
+//             email,
+//             password,
+//         });
+//     } else {
+//         passport.authenticate('local', {
+//             successRedirect: '/dashboard',
+//             failureRedirect: '/login',
+//             failureFlash: true,
+//         })(req, res);
+//     }
+// };
 
 // Handle User logout on GET
 exports.user_logout = (req, res) => {
