@@ -86,7 +86,12 @@ exports.user_create_post = [
                                     return next(err);
                                 }
                                 // Successful - redirect to index page (for now)
-                                res.redirect('/');
+                                // res.redirect('/');
+                                passport.authenticate('local', {
+                                    successRedirect: "/",
+                                    failureRedirect: "/user/create",
+                                    // failureFlash: true,
+                                }) (req, res);
                             })
                         });
                     }
@@ -97,7 +102,7 @@ exports.user_create_post = [
 
 // Handle User membership code on GET.
 exports.user_membership_update_get = (req, res) => {
-    res.render("membership_form")
+    res.render("membership_form", {user: req.user});
 }
 
 // Handle User membership code on POST.
