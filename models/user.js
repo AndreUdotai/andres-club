@@ -26,9 +26,11 @@ const UserSchema = new Schema({
     },
     membershipStatus: {
         type: Boolean,
+        default: false,
     },
     adminStatus: {
         type: Boolean,
+        default: false,
     },
 });
 
