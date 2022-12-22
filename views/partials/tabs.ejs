@@ -19,12 +19,14 @@
             <% } %>
         </ul>
         <ul>
-            <li id="becomeMember">
-                <a href="/user/:id/membership/update">Become a member</a>
-            </li>
-            <li id="becomeAdmin">
-                <a href="/user/:id/admin/update">Become an admin</a>
-            </li>
+            <% if (user) {%>
+                <li id="becomeMember">
+                    <a href="/user/:id/membership/update">Become a member</a>
+                </li>
+                <li id="becomeAdmin">
+                    <a href="/user/:id/admin/update">Become an admin</a>
+                </li>
+            <% } %>
         </ul>
     </div>
 </div>
