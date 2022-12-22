@@ -102,13 +102,46 @@ exports.user_create_post = [
 
 // Handle User membership code on GET.
 exports.user_membership_update_get = (req, res) => {
-    res.render("membership_form", {user: req.user});
+    res.render("membership_form", {user: req.user, errors: ""});
 }
 
 // Handle User membership code on POST.
-exports.user_membership_upate_post = (req, res) => {
-    res.send("NOT IMPLEMENTED: Membership create POST")
-}
+exports.user_membership_update_post = [
+    // Validate and sanitize fields.
+    body("membershipCode")
+        .trim()
+        .isLength({ min: 1 })
+        .withMessage("Insert something ke afo udoho idad")
+        .equals("kumbaya")
+        .withMessage("Wrong membership code."),
+
+    // Process request after validation and sanitization.
+    (req, res, next) => {
+        // Extract the validation errors from a request.
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            // There are errors. Render form again with sanitized values/errors messages.
+            res.render("membership_form", {
+                user: req.user,
+                errors: errors,
+                enteredCode: req.body,
+            });
+            return;
+        }
+        // Data from form is valid.
+
+        // Save validated and sanitized data to a variable
+        User.updateOne({ "_id": req.params.id }, { "$set": { "membershipStatus": true }},
+            (err) => {
+                if (err) {
+                    return next(err);
+                }
+                // Successful - redirect user to home page
+                res.redirect("/");
+            })
+    }
+]
 
 // Handle User admin code on GET.
 exports.user_admin_update_get = (req, res) => {

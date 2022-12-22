@@ -5,8 +5,12 @@
         <div class="form">
             <label for="membershipCode">Enter Membership Code</label>
             <input type="password" id="membershipCode" placeholder="" name="membershipCode" required value="">
+            <% if (errors) { %>
+                <p class="errorMessage">
+                    <%=errors.errors[0].msg%>
+                </p>
+            <% } %>
             <button type="sumbit">Submit</button>
         </div>
     </form>
-
 <%- include('./partials/footer.ejs'); %>
