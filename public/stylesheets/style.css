@@ -141,6 +141,12 @@ button:hover {
   margin-top: 5px;
 }
 
+.errorMessage {
+  font-size: 0.8em;
+  color: rgb(247, 108, 81);
+  font-style: italic;
+}
+
 /* ****************************************** */
 /* SIGN UP PAGE */
 /* ****************************************** */
