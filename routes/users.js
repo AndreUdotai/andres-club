@@ -23,7 +23,7 @@ router.get("/logout", user_controller.user_logout);
 router.get("/:id/membership/update", user_controller.user_membership_update_get);
 
 // POST request for updating user membership status
-router.post("/:id/membership/update", user_controller.user_membership_upate_post);
+router.post("/:id/membership/update", user_controller.user_membership_update_post);
 
 // GET request for updating user admin status
 router.get("/:id/admin/update", user_controller.user_admin_update_get);
