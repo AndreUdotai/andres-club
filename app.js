@@ -1,9 +1,14 @@
+// Require the express module
 const express = require('express');
+// Creates the app object using the imported express module
 const app = express();
 
+// Create HTTP errors where needed (for express error handling)
 var createError = require('http-errors');
 var path = require('path');
+// To parse the cookie header and populate req.cookies
 var cookieParser = require('cookie-parser');
+// An HTTP request logger middleware for node.
 var logger = require('morgan');
 
 const mongoose = require("mongoose");
@@ -16,6 +21,7 @@ loginCheck(passport);
 
 const session = require('express-session');
 
+// Requires modules from the routes directory
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
@@ -28,13 +34,20 @@ mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-// view engine setup
+// Using the app object to set up the view (template) engine.
+  // Setting the 'views' value to specify the folder where the templates will be stored
 app.set('views', path.join(__dirname, 'views'));
+  // Setting the 'view engine' value to specify the template library.
 app.set('view engine', 'ejs');
 
+// Below: calling app.use() to add the middleware libraries that we imported above into the request handling chain
+
 app.use(logger('dev'));
+
+// Body parsing: To populate the req.body say with form fields
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -42,10 +55,7 @@ app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Body parsing
-app.use(express.urlencoded({ extended: false }));
-
-// Routes
+// Adding our (previously imported) route-handling code to the request handling chainRoutes
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/post', postsRouter);
