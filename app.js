@@ -11,6 +11,7 @@ var cookieParser = require('cookie-parser');
 // An HTTP request logger middleware for node.
 var logger = require('morgan');
 
+// Import the mongoose module
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 require('dotenv').config();
@@ -31,7 +32,9 @@ var postsRouter = require('./routes/posts');
 mongoose.set('strictQuery', false);
 const mongoDB = process.env.MY_MONGODB_URI
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+// Get the default connection
 const db = mongoose.connection;
+// Bind connection to error event (to get notification of connection errors)
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // Using the app object to set up the view (template) engine.
