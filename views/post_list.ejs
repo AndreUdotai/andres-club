@@ -2,10 +2,12 @@
     <%- include('./partials/tabs.ejs'); %>
 
     <div id="main">
-        <div id="newPost">
-            <textarea id="message" type="text" rows="3" placeholder="What's on your mind"></textarea>
-            <button id="postButton">Post</button>
-        </div>
+        <% if (user) { %>
+            <div id="newPost">
+                <textarea id="message" type="text" rows="3" placeholder="What's on your mind"></textarea>
+                <button id="postButton">Post</button>
+            </div>
+        <% } %>
         <div id="posts">
             <div id="postHeader">
                 <p id="name">Rino</p>
