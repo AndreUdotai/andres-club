@@ -27,9 +27,11 @@
                         <a href= '<%=user.url%>/membership/update'>Become a member</a>
                     </li>
                 <%} %>
-                <li id="becomeAdmin">
-                    <a href="<%=user.url%>/admin/update">Become an admin</a>
-                </li>
+                <% if (!user.adminStatus) { %>
+                    <li id="becomeAdmin">
+                        <a href="<%=user.url%>/admin/update">Become an admin</a>
+                    </li>
+                <%} %>
             <% } %>
         </ul>
     </div>
