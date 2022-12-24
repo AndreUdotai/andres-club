@@ -86,8 +86,6 @@ exports.user_create_post = [
                                     if (err) {
                                         return next(err);
                                     }
-                                    // Successful - redirect to index page (for now)
-                                    // res.redirect('/');
                                     passport.authenticate('local', {
                                         successRedirect: '/',
                                         failureRedirect: '/user/create',

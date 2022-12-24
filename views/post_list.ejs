@@ -8,24 +8,35 @@
                 <button id="postButton">Post</button>
             </div>
         <% } %>
-        <div id="posts">
-            <div id="postHeader">
-                <p id="name">Rino</p>
-                <p id="usernameDisplay">@rinorincho</p>
-                <li id="time"><span>3d</span></li>
-            </div>
-            <p id="post">From the days of Romeo, the kingdom of women suffereth violence and only the vielent men could
-                take them by force.</p>
-        </div>
-        <div id="posts">
-            <div id="postHeader">
-                <p id="name">Rino</p>
-                <p id="usernameDisplay">@rinorincho</p>
-                <li id="time"><span>3d</span></li>
-            </div>
-            <p id="post">From the days of Romeo, the kingdom of women suffereth violence and only the vielent men could
-                take them by force.</p>
-        </div>
+
+        <!-- <ul>
+            <% for (let post of posts) { %>
+                <li>
+                    <p><%= post.user.firstName %></p>
+                    <p><%= post.user.lastName %></p>
+                    <p><%= post.user.username %></p>
+                    <p><%= post.post %></p>
+                    <p><%= post.timeStamp %></p>
+                </li>
+            <% } %>
+        </ul>  -->
+
+        <ul id="posts">
+            <% for (let post of posts){ %>
+                <li>
+                    <div id="postHeader">
+                        <p id="name"><%= post.user.fullName %></p>
+                        <p id="usernameDisplay">@<%= post.user.username %></p>
+                        <p id="time"><span><%= post.timeStamp %></span></p>
+                    </div>
+                    <p id="post">
+                        <%= post.post %>
+                    </p>
+                </li>
+            <% } %>
+        </ul>
+
+
     </div>
 
 <%- include('./partials/footer.ejs'); %>
