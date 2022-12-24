@@ -1,6 +1,9 @@
 const Post = require("../models/post");
 const { body, validationResult } = require('express-validator');
 const User = require("../models/user");
+const dayjs = require('dayjs');
+const relativeTime = require('dayjs/plugin/relativeTime')
+dayjs.extend(relativeTime)
 
 
 // Display Post create form on GET.
@@ -58,6 +61,9 @@ exports.post_list = (req, res, next) => {
                 return next(err);
             }
             //Successful, so render
+            // for (let post of posts) {
+            //     console.log(dayjs(post.timeStamp).from(dayjs))
+            // }
             res.render('post_list', {
                 user: req.user,
                 posts: posts,
