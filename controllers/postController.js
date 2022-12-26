@@ -63,6 +63,7 @@ exports.post_list = (req, res, next) => {
                 return next(err);
             }
             posts.reverse();
+            console.log(req.user)
             res.render('post_list', {
                 user: req.user,
                 posts: posts,
@@ -70,14 +71,15 @@ exports.post_list = (req, res, next) => {
             });
         });
 };
-
-// Display Post delete form on GET.
-exports.post_delete_get = (req, res) => {
-    res.send("NOT IMPLEMENTED: Post delete GET");
-};
   
 // Handle Post delete on POST.
 exports.post_delete_post = (req, res) => {
-    res.send("NOT IMPLEMENTED: Post delete POST");
+    Post.findByIdAndRemove(req.body.postid, (err) => {
+        if (err) {
+            return next(err);
+        }
+        // Success - redirect back to home page
+        res.redirect('/');
+    })
 };
 

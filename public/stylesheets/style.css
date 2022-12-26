@@ -158,6 +158,17 @@ button:hover {
   font-style: italic;
 }
 
+#delete {
+  background-color: red;
+  color: white;
+  font-size: small;
+  margin-top: 4px;
+}
+
+#delete:hover {
+  cursor: pointer;
+}
+
 /* ****************************************** */
 /* SIGN UP PAGE */
 /* ****************************************** */
