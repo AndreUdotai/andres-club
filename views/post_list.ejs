@@ -1,32 +1,38 @@
 <%- include('./partials/header.ejs'); %>
     <%- include('./partials/tabs.ejs'); %>
 
-    <div id="main">
-        <% if (user) { %>
-            <form method="POST" action="/post/create">
-                <div id="newPost">
-                    <textarea id="message" type="text" rows="3" placeholder="What's on your mind" name="post" value="" required></textarea>
-                    <button type="submit" id="postButton">Post</button>
-                </div>
-            </form>
-        <% } %>
+        <div id="main">
+            <% if (user) { %>
+                <form method="POST" action="/post/create">
+                    <div id="newPost">
+                        <textarea id="message" type="text" rows="3" placeholder="What's on your mind" name="post"
+                            value="" required></textarea>
+                        <button type="submit" id="postButton">Post</button>
+                    </div>
+                </form>
+            <% } %>
 
-        <ul id="posts">
             <% if (posts) { %>
                 <% for (let post of posts){ %>
-                    <li>
+                    <div id="posts">
                         <div id="postHeader">
-                            <p id="name"><%= post.user.fullName %></p>
-                            <p id="usernameDisplay">@<%= post.user.username %></p>
-                            <p id="time"><span><%= post.timeStamp %></span></p>
+                            <p id="name">
+                                <%= post.user.fullName %>
+                            </p>
+                            <p id="usernameDisplay">@<%= post.user.username %>
+                            </p>
+                            <li id="time">
+                                <span>
+                                    <%= dayjs(post.timeStamp).toNow(true) + " ago" %>
+                                </span>
+                            </li>
                         </div>
                         <p id="post">
                             <%= post.post %>
                         </p>
-                    </li>
+                    </div>
                 <% } %>
             <% } %>
-        </ul>
-    </div>
+        </div>
 
-<%- include('./partials/footer.ejs'); %>
+        <%- include('./partials/footer.ejs'); %>

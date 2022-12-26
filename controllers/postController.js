@@ -2,7 +2,9 @@ const Post = require("../models/post");
 const { body, validationResult } = require('express-validator');
 const User = require("../models/user");
 const dayjs = require('dayjs');
-const relativeTime = require('dayjs/plugin/relativeTime')
+const relativeTime = require('dayjs/plugin/relativeTime');
+const post = require("../models/post");
+const { forEach } = require("async");
 dayjs.extend(relativeTime)
 
 
@@ -60,13 +62,11 @@ exports.post_list = (req, res, next) => {
             if (err) {
                 return next(err);
             }
-            //Successful, so render
-            // for (let post of posts) {
-            //     console.log(dayjs(post.timeStamp).from(dayjs))
-            // }
+            posts.reverse();
             res.render('post_list', {
                 user: req.user,
                 posts: posts,
+                dayjs: dayjs,
             });
         });
 };

@@ -116,21 +116,23 @@ button:hover {
 }
 
 #posts {
-  margin-top: 5px;
+  /* margin-top: 5px; */
+  border-bottom: 0.5px silver solid;
   /* border-top: 0.5px silver solid; */
+  padding: 10px 20px;
   background-color: rgb(252, 252, 252);
 }
 
-#posts li {
+/* #posts li {
   list-style-type: none;
   border-bottom: 0.5px silver solid;
   padding: 10px 20px;
 
-}
+} */
 
-ul#posts {
+/* ul#posts {
   padding-left: 0;
-}
+} */
 
 #postHeader {
   display: flex;
