@@ -13,8 +13,8 @@ const post_controller = require("../controllers/postController");
 // POST request for creating a post
 router.post("/create", post_controller.post_create_post);
 
-// GET request for deleting a post
-router.get("/:id/delete", post_controller.post_delete_get);
+// // GET request for deleting a post
+// router.get("/:id/delete", post_controller.post_delete_get);
 
 // POST request for deleting a post
 router.post("/:id/delete", post_controller.post_delete_post);
