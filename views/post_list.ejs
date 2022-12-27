@@ -1,0 +1,61 @@
+<%- include('./partials/header.ejs'); %>
+    <%- include('./partials/tabs.ejs'); %>
+
+        <div id="main">
+            <% if (user) { %>
+                <form method="POST" action="/post/create">
+                    <div id="newPost">
+                        <textarea id="message" type="text" rows="3" placeholder="What's on your mind" name="post"
+                            value="" required></textarea>
+                        <button type="submit" id="postButton">Post</button>
+                    </div>
+                </form>
+            <% } %>
+            
+            <% if (posts) { %>
+                <% for (let post of posts){ %>
+                    <div id="posts">
+                        <% if (user) { %>
+                            <% if (user.membershipStatus === true) { %>
+                                <div id="postHeader">
+                                    <p id="name">
+                                        <%= post.user.fullName %>
+                                    </p>
+                                    <p id="usernameDisplay"> @<%= post.user.username %>
+                                    </p>
+                                    <li id="time">
+                                        <span>
+                                            <%= dayjs(post.timeStamp).toNow(true) + " ago" %>
+                                        </span>
+                                    </li>
+                                </div>
+                            <% } else if (user.username == post.user.username) { %>
+                                <div id="postHeader">
+                                    <p id="name">
+                                        <%= post.user.fullName %>
+                                    </p>
+                                    <p id="usernameDisplay">@<%= post.user.username %>
+                                    </p>
+                                    <li id="time">
+                                        <span>
+                                            <%= dayjs(post.timeStamp).toNow(true) + " ago" %>
+                                        </span>
+                                    </li>
+                                </div>
+                            <% } %>
+                        <% } %>
+                        <p id="post">
+                            <%= post.post %>
+                        </p>
+                        <% if (user && user.adminStatus === true) { %>
+                            <form method="POST" action="/post/:id/delete">
+                                <input type="hidden" name="postid" required value= <%= post._id %> >
+                                <button type="submit" id="delete">Delete</button>
+                            </form>
+                        <% } %>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+
+    <%- include('./partials/footer.ejs'); %>

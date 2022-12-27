@@ -26,16 +26,24 @@ const UserSchema = new Schema({
     },
     membershipStatus: {
         type: Boolean,
+        default: false,
     },
     adminStatus: {
         type: Boolean,
+        default: false,
     },
 });
 
 // Virtual for user's full name
-UserSchema.virtual('url').get(function () {
-    fullname = `${this.firstName}, ${this.lastName}`;
+UserSchema.virtual('fullName').get(function () {
+    fullname = `${this.firstName} ${this.lastName}`;
     return fullname;
+});
+
+// Virtual for user's membership update URL
+UserSchema.virtual('url').get(function () {
+    // We don't use an arrow function as we'll need this object
+    return `/user/${this.id}`;
 });
 
 // Export model
