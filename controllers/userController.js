@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 
 // Display User create form on GET.
 exports.user_create_get = (req, res) => {
-    res.render('user_form', { user: req.user, error: 'No error' });
+    res.render('user_form', { user: req.user, errors: '', usernameError: ''});
 };
 
 // Handle User create on POST.
@@ -15,25 +15,24 @@ exports.user_create_post = [
     body('firstName')
         .trim()
         .isLength({ min: 1 })
-        .escape()
         .withMessage('First name must be specified.'),
     body('lastName')
         .trim()
         .isLength({ min: 1 })
-        .escape()
         .withMessage('Last name must be specified.'),
     body('username')
         .trim()
         .isLength({ min: 1 })
-        .escape()
         .withMessage('Username must be specified.'),
     body('password')
         .trim()
-        .isLength({ min: 4 })
-        .withMessage('Password must be specified'),
+        .isLength({ min: 6 })
+        .withMessage('Password must be at least 6 characters long'),
     body('confirmPassword')
-        .exists()
-        .custom((value, { req }) => value === req.body.password),
+        .isLength({min: 1})
+        .withMessage('Confirm password!')
+        .custom((value, { req }) => value === req.body.password)
+        .withMessage('Passwords do not match!'),
 
     // Process request after validation and sanitation.
     (req, res, next) => {
@@ -51,9 +50,9 @@ exports.user_create_post = [
         if (!errors.isEmpty()) {
             // There are errors. Render form again with sanitized values/errors messages.
             res.render('user_form', {
-                error: 'There are errors',
                 user: req.body,
-                errors: errors.array(),
+                errors: errors,
+                usernameError: '',
             });
             return;
         } else {
@@ -68,9 +67,9 @@ exports.user_create_post = [
                     if (found_username) {
                         // User with same username already exist,  Render form again with sanitized values/errors messages.
                         res.render('user_form', {
-                            error: 'Username exists already',
                             user: req.body,
-                            errors: errors.array(),
+                            usernameError: "Username already exists!",
+                            errors: '',
                         });
                         return;
                     } else {
@@ -220,7 +219,6 @@ exports.user_login_post = (req, res) => {
 exports.user_logout = (req, res, next) => {
     req.logout(function (err) {
         if (err) {
-            console.log('I got here!!!!!!');
             return next(err);
         }
         res.redirect('/');

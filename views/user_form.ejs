@@ -3,19 +3,41 @@
 
     <div id="signUpForm">
         <h2 id="pageTitle">Sign up</h2>
-        <p> <%= error %> </p>
         <form method="POST" action=''>
             <div class="form" id="signUp">
                 <label for="firstName">First Name</label>
-                <input type="text" id="firstName" placeholder="Alfred" name="firstName" required value="">
+                <input type="text" id="firstName" placeholder="Alfred" name="firstName" required value = <%= undefined === user ? '' : user.firstName %>>
                 <label for="firstName">Last Name</label>
-                <input type="text" id="lastName" placeholder="Smith" name="lastName" required value="">
+                <input type="text" id="lastName" placeholder="Smith" name="lastName" required value = <%= undefined === user ? '' : user.lastName %>>
                 <label for="username">Username</label>
-                <input type="text" id="username" placeholder="alfredsmith" name="username" required value="">
+                <input type="text" id="username" placeholder="alfredsmith" name="username" required value = <%= undefined === user ? '' : user.username %>>
+                <% if (usernameError) { %>
+                    <p class="errorMessage">
+                        <%= usernameError %>
+                    </p>
+                <% } %>
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="********" name="password" required value="">
+                <input type="password" id="password" placeholder="" name="password" required value = <%= undefined === user ? '' : user.password %>>
+                <% if (errors) { %>
+                    <% for(let error of errors.errors){ %>
+                        <% if(error.param == 'password'){ %>
+                            <p class="errorMessage">
+                                <%=error.msg%>
+                            </p>
+                        <% } %>
+                    <% } %>
+                <% } %>
                 <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" placeholder="********" name="confirmPassword" value="">
+                <input type="password" id="confirmPassword" placeholder="" name="confirmPassword" value = <%= undefined === user ? '' : user.confirmPassword %>>
+                <% if (errors) { %>
+                    <% for(let error of errors.errors){ %>
+                        <% if(error.param == 'confirmPassword'){ %>
+                            <p class="errorMessage">
+                                <%=error.msg%>
+                            </p>
+                        <% } %>
+                    <% } %>
+                <% } %>
                 <button type="submit">Sign up</button>
             </div>
         </form>

@@ -11,7 +11,7 @@
                     </div>
                 </form>
             <% } %>
-
+            
             <% if (posts) { %>
                 <% for (let post of posts){ %>
                     <div id="posts">
@@ -21,7 +21,7 @@
                                     <p id="name">
                                         <%= post.user.fullName %>
                                     </p>
-                                    <p id="usernameDisplay">@<%= post.user.username %>
+                                    <p id="usernameDisplay"> @<%= post.user.username %>
                                     </p>
                                     <li id="time">
                                         <span>

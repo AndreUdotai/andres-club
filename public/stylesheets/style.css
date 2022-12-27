@@ -59,6 +59,15 @@ li:hover {
   padding-right: 10px;
 }
 
+#name {
+  margin-right: 3px;
+  font-weight: bold;
+}
+
+#time span, #usernameDisplay, #time {
+  color: rgb(135, 135, 135);
+}
+
 #newPost {
   display: flex;
   flex-direction: column;
@@ -118,6 +127,7 @@ button:hover {
 #posts {
   /* margin-top: 5px; */
   border-bottom: 0.5px silver solid;
+  font-size: 0.9rem;
   /* border-top: 0.5px silver solid; */
   padding: 10px 20px;
   background-color: rgb(252, 252, 252);
