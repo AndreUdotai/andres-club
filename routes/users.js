@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const { protectRoute } = require("../auth/protect");
 
 // Require user controller module.
 const user_controller = require("../controllers/userController");
@@ -20,13 +21,13 @@ router.post("/login", user_controller.user_login_post);
 router.get("/logout", user_controller.user_logout);
 
 // GET request for updating user membership status
-router.get("/:id/membership/update", user_controller.user_membership_update_get);
+router.get("/:id/membership/update", protectRoute, user_controller.user_membership_update_get);
 
 // POST request for updating user membership status
 router.post("/:id/membership/update", user_controller.user_membership_update_post);
 
 // GET request for updating user admin status
-router.get("/:id/admin/update", user_controller.user_admin_update_get);
+router.get("/:id/admin/update", protectRoute, user_controller.user_admin_update_get);
 
 // POST request for updating user adming status
 router.post("/:id/admin/update", user_controller.user_admin_update_post);
